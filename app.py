@@ -64,7 +64,7 @@ class Posts(db.Model):
     title = db.Column(db.String(150), unique=False, nullable=False)
     subtitle = db.Column(db.String(250), unique=False, nullable=False)
     image_url = db.Column(db.String(250), unique=False, nullable=False)
-    blog_content= db.Column(db.Text(10000), unique=False, nullable=False)
+    blog_content= db.Column(db.Text, unique=False, nullable=False)
     # author = db.Column(db.String(250), unique=False, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
