@@ -17,6 +17,7 @@ from dotenv import load_dotenv
 import os
 
 
+
 # Load environment variables from .env file
 load_dotenv()
 
@@ -45,6 +46,8 @@ migrate = Migrate(app, db)
 
 print("SECRET_KEY:", os.environ.get('SECRET_KEY'))
 print("DATABASE_URI:", os.environ.get('DATABASE_URL'))
+
+
 
 # models for users
 class User(db.Model, UserMixin):
@@ -96,7 +99,8 @@ def register():
         
         # hashing users password
         password = form.password.data
-        hashed_password = flask_bcrypt.generate_password_hash(password)
+        hashed_password = flask_bcrypt.generate_password_hash(password).decode('utf-8')
+
 
         new_user =User(name = form.name.data,
                    email = form.email.data,
