@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+    
+{% block content %}
+<body>
+    <!-- navbar -->
+     
+    {% include 'header.html' %}
+    
+    
+    <form  method = 'POST' action="{{url_for('create_post')}}">
+        {{form.csrf_token}}
+
+        <div class="mb-3">
+            {{form.title.label}}<br>  {{ form.title(size=60) }}
+        </div>
+
+        <div class="mb-3">
+            {{form.subtitle.label}}<br>  {{ form.subtitle(size=60) }}
+        </div>
+
+        <div class="mb-3">
+            {{form.image.label}}<br>  {{ form.image(size=60) }}
+        </div>
+        <p>
+        {{ form.content.label }}<br>
+        {{ form.content() }}<br>
+        {% for error in form.content.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+        </p>
+
+       
+
+        <button class ='btn btn-primary'>{{form.submit.label}}</button>
+    </form>
+    
+    <!-- customizing the ckeditor -->
+    <script>
+        CKEDITOR.replace('content', {
+            toolbar: [
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript'] },
+                { name: 'paragraph', items: ['NumberedList', 'BulletedList', 'Blockquote'] },
+                { name: 'links', items: ['Link', 'Unlink'] },
+                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
+                { name: 'colors', items: ['TextColor', 'BGColor'] },
+                { name: 'tools', items: ['Maximize', 'ShowBlocks'] }
+            ],
+            height: 300
+        });
+    </script>
+    
+</body>
+{%endblock %}

@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: blog-app
+    runtime: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app:app"
+    envVars:
+      - key: SECRET_KEY
+        value: d5jkk%JjaI&NX|MNSAsjhau453K&JAK@DSklasl
+      - key: DATABASE_URL
+        value: postgresql://user:password@host:port/database
